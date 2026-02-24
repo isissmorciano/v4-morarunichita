@@ -163,6 +163,16 @@ print("Libri in archivio:", len(risultato))
 
 main()
 
-# **Esempio di output:**
-# File 'biblioteca.json' salvato con successo.
-# Libri in archivio: 4
+def filtra_per_genere(libri, genere):
+    nuova_lista = []
+    for libro in libri:
+        if libro["genere"] == genere:
+            nuova_lista.append(libro)
+    return nuova_lista
+
+def main():
+    libri_caricati = carica_biblioteca("biblioteca.json")
+    fantascienza = filtra_per_genere(libri_caricati, "Fantascienza")
+    print(f"Libri di Fantascienza: {len(fantascienza)}")
+    for libro in fantascienza:
+        print(f"- {libro['titolo']}")

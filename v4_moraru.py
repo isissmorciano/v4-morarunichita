@@ -125,3 +125,14 @@
 # Inserisci titolo da modificare: Titanic
 # Libro 'Titanic' non trovato.
 # ```
+
+def salva_biblioteca(libri,nome_file):
+    libri = [
+     {"titolo": "Il piccolo principe", "genere": "Romanzo", "anno": 1943},
+     {"titolo": "1984", "genere": "Fantascienza", "anno": 1949},
+     {"titolo": "Dune", "genere": "Fantascienza", "anno": 1965},
+     {"titolo": "Harry Potter", "genere": "Fantasy", "anno": 1997}
+    ]
+nome_file= "v4_moraru.json "
+
+carica_biblioteca(nome_file: str) -> list[dict]:

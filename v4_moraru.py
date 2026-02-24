@@ -142,20 +142,26 @@ def salva_biblioteca(libri,nome_file):
     print(f"file {nome_file} salvato")
 
 def carica_biblioteca(nome_file: str) -> list[dict]:
-    file = open({nome_file}, "w")
-    nome_file = "biblioteca"
+    file = open({nome_file}, "r")
+    lista = json.load(file)
+    file.close()
+    return lista
+
+
+def main():
+    libri = [
+        {"titolo": "Il piccolo principe", "genere": "Romanzo", "anno": 1943},
+        {"titolo": "1984", "genere": "Fantascienza", "anno": 1949},
+        {"titolo": "Dune", "genere": "Fantascienza", "anno": 1965},
+        {"titolo": "Harry Potter", "genere": "Fantasy", "anno": 1997}
+        ]
+    nome_file = "biblioteca.json"
+
     salva_biblioteca(libri, nome_file)
-    result = carica_biblioteca(nome_file)
-    assert result == libri
-    os.remove(nome_file)
+    risultato = carica_biblioteca(nome_file)
+print("Libri in archivio:", len(risultato))
 
-
-def test_main(capsys):
-    main()
-    captured = capsys.readouterr()
-    salva_biblioteca = biblioteca.json
-    assert "File 'biblioteca.json' salvato con successo." in captured.out
-    assert "libri caricati:" in captured.out
+main()
 
 # **Esempio di output:**
 # File 'biblioteca.json' salvato con successo.

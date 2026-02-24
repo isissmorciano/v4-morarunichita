@@ -125,6 +125,8 @@
 # Inserisci titolo da modificare: Titanic
 # Libro 'Titanic' non trovato.
 # ```
+import json
+import os
 
 def salva_biblioteca(libri,nome_file):
     libri = [
@@ -133,6 +135,28 @@ def salva_biblioteca(libri,nome_file):
      {"titolo": "Dune", "genere": "Fantascienza", "anno": 1965},
      {"titolo": "Harry Potter", "genere": "Fantasy", "anno": 1997}
     ]
-nome_file= "v4_moraru.json "
+    nome_file= "biblioteca.json "
+    file = open(nome_file, "w")
+    json.dump(libri, file, intend=4)
+    file.close()
+    print(f"file {nome_file} salvato")
 
-carica_biblioteca(nome_file: str) -> list[dict]:
+def carica_biblioteca(nome_file: str) -> list[dict]:
+    file = open({nome_file}, "w")
+    nome_file = "biblioteca"
+    salva_biblioteca(libri, nome_file)
+    result = carica_biblioteca(nome_file)
+    assert result == libri
+    os.remove(nome_file)
+
+
+def test_main(capsys):
+    main()
+    captured = capsys.readouterr()
+    salva_biblioteca = biblioteca.json
+    assert "File 'biblioteca.json' salvato con successo." in captured.out
+    assert "libri caricati:" in captured.out
+
+# **Esempio di output:**
+# File 'biblioteca.json' salvato con successo.
+# Libri in archivio: 4
